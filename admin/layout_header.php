@@ -74,10 +74,26 @@ if (!isset($_SESSION['admin'])) {
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
                 <!-- Navbar Search -->
-                <li class="nav-item">
-
+                <li class="nav-item dropdown ">
+                    <a class="nav-link " data-toggle="dropdown" href="#">
+                        <i class=" far fa-solid fa-bell fa-lg "></i>
+                        <span id="notify" class="badge badge-danger  navbar-badge"></span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                        <span class="dropdown-item dropdown-header">15 Notifications</span>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
+                            <i id="notify_course" class="fas fa-envelope text-primary "></i>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
+                            <i class="fas fa-users mr-2"></i> 8 Info Change Requests
+                            <span class="float-right text-muted text-sm">12 hours</span>
+                        </a>
+                        <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+                    </div>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item ml-3">
                     <a href="../logout.php" class="btn btn-info">登出</a>
                 </li>
             </ul>
@@ -133,6 +149,13 @@ if (!isset($_SESSION['admin'])) {
                                     <a href="admin_add_user.php" class="nav-link <?php echo $admin_add_user_menu ?>">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>添加管理员</p>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a href="admin_add_user.php" class="nav-link <?php echo $admin_add_user_menu ?>">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>请求查询</p>
                                     </a>
                                 </li>
                             </ul>

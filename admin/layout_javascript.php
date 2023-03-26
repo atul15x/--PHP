@@ -53,11 +53,39 @@
 <script src="./theme_file/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 
 
-<!-- overlayScrollbars -->
-<script src="./theme_file/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-<!-- AdminLTE App -->
-<script src="./theme_file/dist/js/adminlte.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="./theme_file/dist/js/demo.js"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="./theme_file/dist/js/pages/dashboard.js"></script>
+<script>
+    // A $( document ).ready() block.
+    $( document ).ready(function() {
+        setInterval(function () {getNotifyData()},1000);
+
+    });
+
+    function getNotifyData(){
+        var notify = document.getElementById("notify");
+        var notify_course = document.getElementById("notify_course");
+        var getNotify = "getnewNoti";
+        $.ajax({
+            url: "backend_check.php",
+            method: 'POST',
+            data: {getNotify:getNotify},
+            success: function (res) {
+                var data = $.parseJSON(res);
+
+                if (data.status == "HaveNewNotification") {
+
+                    notify.textContent = data.Number;
+                    notify_course.textContent = "  "+data.Number + " New Course Requests";
+                }else if (data.status == "HaveNoNotification")
+                {
+                    notify.textContent = data.Number;
+                }
+
+
+
+            },
+            error: function (res) {
+                toastr["error"]("Having Probleam")
+            }
+        })
+    }
+</script>

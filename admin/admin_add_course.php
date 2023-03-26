@@ -17,7 +17,7 @@ $profile_query = mysqli_query($con, $profile);
         <form id="add_course">
             <div class="row">
                 <div class="col">
-                    <label for="name">课程号：:</label>
+                    <label for="name">课程号:</label>
                     <input name="c_id" type="text" class="form-control" required id="name" />
                 </div>
                 <div class="col">

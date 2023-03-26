@@ -239,6 +239,26 @@ if (isset($_POST['id']) && isset($_POST['name']) && isset($_POST['email']) && is
     }
 
 
+} elseif (isset($_POST['getNotify'])) {
+    // Run query and return results as JSON
+    $sql = "SELECT * FROM request_course WHERE req_seen = '0' ";
+    $result = mysqli_query($con, $sql);
+
+    $notify_nums = mysqli_num_rows($result);
+
+    if ($notify_nums > 0)
+    {
+        $arr = array("status" => 'HaveNewNotification', 'Number' => $notify_nums );
+        echo json_encode($arr);
+    }
+    else
+    {
+        $arr = array("status" => 'HaveNoNotification', 'Number' => $notify_nums);
+        echo json_encode($arr);
+    }
+
+
+
 } else {
     echo "Error";
 }
