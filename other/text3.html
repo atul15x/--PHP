@@ -1,0 +1,22 @@
+<html>
+
+<head>
+    <!-- Toastr -->
+    <link rel="stylesheet" href="./theme_file/plugins/toastr/toastr.min.css">
+</head>
+
+<body>
+    <button type="button" class="btn btn-success toastrDefaultSuccess">
+        Launch Success Toast
+    </button>
+    <script src="./theme_file/plugins/jquery/jquery.min.js"></script>
+    <script src="./theme_file/plugins/toastr/toastr.min.js"></script>
+    <script>
+        $('.toastrDefaultSuccess').click(function() {
+            toastr.success('Lorem ipsum dolor sit amet, consetetur sadipscing elitr.')
+        });
+
+    </script>
+</body>
+
+</html>
