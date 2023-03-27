@@ -54,7 +54,7 @@
 
 
 <script>
-    // A $( document ).ready() block.
+
     $( document ).ready(function() {
         setInterval(function () {getNotifyData()},1000);
 
@@ -63,6 +63,7 @@
     function getNotifyData(){
         var notify = document.getElementById("notify");
         var notify_course = document.getElementById("notify_course");
+        var notify_number = document.getElementById("notify_number");
         var getNotify = "getnewNoti";
         $.ajax({
             url: "backend_check.php",
@@ -75,9 +76,12 @@
 
                     notify.textContent = data.Number;
                     notify_course.textContent = "  "+data.Number + " New Course Requests";
+                    notify_number.textContent = data.Number;
                 }else if (data.status == "HaveNoNotification")
                 {
                     notify.textContent = data.Number;
+                    notify_number.textContent = data.Number;
+                    notify_course.textContent = " No New Course Requests";
                 }
 
 

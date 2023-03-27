@@ -102,7 +102,7 @@ $profile_result = mysqli_fetch_assoc($profile_query);
 
 <?php
 @include "layout_footer.php";
-@include "layout_javascript.php"
+@include "layout_javascript.php";
     ?>
 
 <script>

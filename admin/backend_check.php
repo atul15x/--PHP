@@ -253,17 +253,88 @@ if (isset($_POST['id']) && isset($_POST['name']) && isset($_POST['email']) && is
     }
     else
     {
-        $arr = array("status" => 'HaveNoNotification', 'Number' => $notify_nums);
+        $arr = array("status" => 'HaveNoNotification', 'Number' => '');
         echo json_encode($arr);
     }
 
 
 
-} else {
-    echo "Error";
+} elseif (isset($_POST['req_read_id'])) {
+
+        $req_read_id = $_POST['req_read_id'];
+
+        $req_seen = "UPDATE request_course SET req_seen = '1' WHERE req_id = '$req_read_id' ";
+        $req_seen_result = mysqli_query($con, $req_seen);
+
+
+        $sql = "SELECT * FROM request_course INNER JOIN department ON request_course.req_course_depart  = department.id
+                INNER JOIN teacher_user ON request_course.req_course_teacher  = teacher_user.id
+                WHERE req_id = '$req_read_id' ";
+        $result = mysqli_query($con, $sql);
+
+        $respose = array();
+        if (mysqli_num_rows($result) > 0) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                $respose = $row;
+            }
+        } else {
+            $respose['status'] = 200;
+            $respose['msg'] = "Data Not Found";
+        }
+
+        echo json_encode($respose);
+
+
+
+} elseif (isset($_POST['req_accept_id']) && isset($_POST['req_course_id']) && isset($_POST['req_course_location']) ) {
+
+    $req_accept_id = $_POST['req_accept_id'];
+    $req_course_id = $_POST['req_course_id'];
+    $req_course_location = $_POST['req_course_location'];
+
+    $req_accept = "UPDATE request_course SET req_approve = '1' WHERE req_id = '$req_accept_id' ";
+    $req_accept_result = mysqli_query($con, $req_accept);
+
+
+    $sql = "SELECT * FROM request_course WHERE req_id = '$req_accept_id' ";
+    $result = mysqli_query($con, $sql);
+    $row = mysqli_fetch_assoc($result);
+
+    $course_name = $row['req_course_name'];
+    $course_point = $row['req_course_point'];
+    $course_start = $row['req_course_start'];
+    $course_finish = $row['req_course_end'];
+    $course_teacher = $row['req_course_teacher'];
+    $course_depart = $row['req_course_depart'];
+
+
+    $insertdata = "insert into course (c_id,c_name,c_point,c_location,c_start_date ,c_finish_date,c_teacher_id,c_depart_id  ) 
+                    values('$req_course_id','$course_name', $course_point,'$req_course_location','$course_start','$course_finish',
+                            '$course_teacher','$course_depart' )";
+
+    $insertdata_query = mysqli_query($con, $insertdata);
+
+
+    if($insertdata_query)
+    {
+        echo "Success";
+    }
+    else
+    {
+        echo "Failed";
+    }
+
+
+
+
+
+
 }
 
 
+else {
+    echo "Error";
+}
 
 
 

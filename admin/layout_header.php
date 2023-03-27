@@ -153,7 +153,7 @@ if (!isset($_SESSION['admin'])) {
                                 </li>
 
                                 <li class="nav-item">
-                                    <a href="admin_add_user.php" class="nav-link <?php echo $admin_add_user_menu ?>">
+                                    <a href="admin_inqurey_req.php" class="nav-link <?php echo $admin_inqurey_req ?>">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>请求查询</p>
                                     </a>
