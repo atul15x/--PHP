@@ -244,18 +244,37 @@ if (isset($_POST['id']) && isset($_POST['name']) && isset($_POST['email']) && is
     $sql = "SELECT * FROM request_course WHERE req_seen = '0' ";
     $result = mysqli_query($con, $sql);
 
-    $notify_nums = mysqli_num_rows($result);
+    $info_notify = "SELECT * FROM request_change_info WHERE req_info_seen = '0' ";
+    $info_notify_result = mysqli_query($con, $info_notify);
 
-    if ($notify_nums > 0)
+    $course_notify_nums = mysqli_num_rows($result);
+
+    $info_notify_nums = mysqli_num_rows($info_notify_result);
+
+    $notify_nums = $course_notify_nums + $info_notify_nums;
+
+    $CourseNotify = 0;
+    $info_notify = 0;
+
+    if ($course_notify_nums > 0)
     {
-        $arr = array("status" => 'HaveNewNotification', 'Number' => $notify_nums );
-        echo json_encode($arr);
+        $CourseNotify = $course_notify_nums;
+
     }
-    else
+    if ($info_notify_nums > 0)
     {
-        $arr = array("status" => 'HaveNoNotification', 'Number' => '');
-        echo json_encode($arr);
+        $info_notify = $info_notify_nums;
     }
+
+
+        $arr = array("status" => 'HaveNewNotification', 'TotalNotifyNumber' => $notify_nums , 'CourseNotify' => $CourseNotify,
+                    'info_notify'  => $info_notify
+                );
+
+        echo json_encode($arr);
+
+
+
 
 
 
@@ -329,6 +348,17 @@ if (isset($_POST['id']) && isset($_POST['name']) && isset($_POST['email']) && is
 
 
 
+}elseif (isset($_POST['req_info_id']))
+{
+    $req_info_id = $_POST['req_info_id'];
+
+    $req_info_seen = "UPDATE request_change_info SET req_info_seen = '1', req_info_approve = '1' WHERE req_info_id = '$req_info_id' ";
+    $req_info_seen_result = mysqli_query($con, $req_info_seen);
+
+    if ($req_info_seen_result){
+
+        echo "success";
+    }
 }
 
 

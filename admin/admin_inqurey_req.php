@@ -32,14 +32,15 @@ $req_course_query = mysqli_query($con, $req_course);
                     <div class="card-body p-0">
                         <ul class="nav nav-pills flex-column">
                             <li class="nav-item active">
-                                <a href="#" class="nav-link active">
+                                <a href="admin_inqurey_req.php" class="nav-link active">
                                     <i class="fas fa-inbox"></i> 课程请求
                                     <span class="badge bg-danger float-right" id="notify_number"></span>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    <i class="far fa-envelope"></i> Sent
+                                <a href="admin_inqurey_info_change.php" class="nav-link">
+                                    <i class="far fa-envelope"></i> 改变信息请求
+                                    <span class="badge bg-danger float-right"  id="notify_info_nums"></span>
                                 </a>
                             </li>
                         </ul>

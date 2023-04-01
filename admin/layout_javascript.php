@@ -64,6 +64,8 @@
         var notify = document.getElementById("notify");
         var notify_course = document.getElementById("notify_course");
         var notify_number = document.getElementById("notify_number");
+        var notify_info = document.getElementById("notify_info");
+        var notify_info_nums = document.getElementById("notify_info_nums");
         var getNotify = "getnewNoti";
         $.ajax({
             url: "backend_check.php",
@@ -72,17 +74,41 @@
             success: function (res) {
                 var data = $.parseJSON(res);
 
+
                 if (data.status == "HaveNewNotification") {
 
-                    notify.textContent = data.Number;
-                    notify_course.textContent = "  "+data.Number + " New Course Requests";
-                    notify_number.textContent = data.Number;
-                }else if (data.status == "HaveNoNotification")
-                {
-                    notify.textContent = data.Number;
-                    notify_number.textContent = data.Number;
-                    notify_course.textContent = " No New Course Requests";
+                    notify_course.textContent = "  "+data.CourseNotify + " 新课程请求";
+                    notify_info.textContent = "  "+data.info_notify + " 改变信息请求";
+
+                    if (data.TotalNotifyNumber != 0)
+                    {
+                        notify.textContent = data.TotalNotifyNumber;
+                    }else
+                    {
+                        notify.textContent = "";
+                    }
+
+
+                    if((data.CourseNotify > 0) )
+                    {
+                        notify_number.textContent = data.CourseNotify;
+
+                    }
+                    else
+                    {
+                        notify_number.textContent ="";
+                    }
+
+                    if( data.info_notify > 0)
+                    {
+                        notify_info_nums.textContent = data.info_notify;
+                    }else
+                    {
+                        notify_info_nums.textContent = "";
+                    }
+
                 }
+
 
 
 

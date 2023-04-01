@@ -80,17 +80,17 @@ if (!isset($_SESSION['admin'])) {
                         <span id="notify" class="badge badge-danger  navbar-badge"></span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                        <span class="dropdown-item dropdown-header">15 Notifications</span>
+<!--                        <span class="dropdown-item dropdown-header">15 Notifications</span>-->
                         <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">
+                        <a href="admin_inqurey_req.php" class="dropdown-item">
                             <i id="notify_course" class="fas fa-envelope text-primary "></i>
                         </a>
                         <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">
-                            <i class="fas fa-users mr-2"></i> 8 Info Change Requests
-                            <span class="float-right text-muted text-sm">12 hours</span>
+                        <a href="admin_inqurey_info_change.php" class="dropdown-item">
+                            <i id="notify_info" class="fas fa-users  text-info"></i>
+
                         </a>
-                        <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+<!--                        <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>-->
                     </div>
                 </li>
                 <li class="nav-item ml-3">
